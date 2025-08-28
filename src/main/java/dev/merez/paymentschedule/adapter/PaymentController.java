@@ -38,6 +38,10 @@ public class PaymentController {
             e.printStackTrace();
             PaymentException paymentException = new PaymentException(e.getMessage());
             return ResponseEntity.badRequest().body(paymentException);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+            PaymentException paymentException = new PaymentException(e.getMessage());
+            return ResponseEntity.badRequest().body(paymentException);
         } catch (Exception e){
             e.printStackTrace();
             PaymentException paymentException = new PaymentException(e.getMessage());

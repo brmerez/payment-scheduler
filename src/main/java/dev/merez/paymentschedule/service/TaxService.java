@@ -14,6 +14,7 @@ public class TaxService {
 
     @Autowired
     TaxBracketRepository taxBracketRepository;
+    //TODO: Implementar criacão de novas faixas de taxa
 
     public TaxBracket determineTaxBracket(LocalDateTime scheduledAt, LocalDateTime scheduledTo) {
 
