@@ -1,6 +1,12 @@
 # Agendador de Pagamentos
 #### por Bruno Merez
 
+### Rodando o App
+
+- Você pode baixar diretamente a build de release do app completa no próprio repositório em `releases`, à esquerda.
+- Só é preciso se assegurar de que o Java 11 esteja instalado e rodar o comando `java -jar paymentschedule-0.0.1-SNAPSHOT.jar`
+
+
 ### Instruções de build
 
 1. Garanta que você tenha instalado o Java 11 na sua máquina, ou mais especificamente `openjdk 11.0.22 2024-01-16`
