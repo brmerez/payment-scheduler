@@ -17,7 +17,7 @@ const user = authState.user;
       saldo disponível.</p>
 
     <div class="w-full flex items-center gap-3">
-      <RouterLink to="/payments/new"><Button>Agendar Pagamento</Button></RouterLink>
+      <RouterLink to="/payments/schedule"><Button>Agendar Pagamento</Button></RouterLink>
       <RouterLink to="/payments"><Button>Ver Pagamentos Agendados</Button></RouterLink>
     </div>
   </section>

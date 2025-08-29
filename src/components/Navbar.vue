@@ -13,12 +13,9 @@ import { authState } from '../lib/authState';
       <h4 class="text-2xl">pay.co</h4>
     </RouterLink>
     <template v-if="authState.user">
-      <RouterLink to="/payments" class="hover:text-amber-300 transition-colors">pagamentos</RouterLink>
-      <RouterLink to="/reports" class="hover:text-amber-300 transition-colors">extratos</RouterLink>
       <div class="flex-1"></div>
-      <RouterLink to="/account" class="hover:text-amber-300 transition-colors">
-        minha conta
-      </RouterLink>
+      <RouterLink to="/payments/schedule" class="hover:text-amber-300 transition-colors">agendar pagamento</RouterLink>
+      <RouterLink to="/payments" class="hover:text-amber-300 transition-colors">pagamentos</RouterLink>
     </template>
     <template v-else>
       <div class="flex-1"></div>

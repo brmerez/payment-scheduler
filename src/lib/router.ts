@@ -1,15 +1,27 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory,
+  type RouteRecordRaw,
+} from "vue-router";
 import Home from "../pages/Home.vue";
 import Payments from "../pages/Payments.vue";
 import Register from "../pages/Register.vue";
 import { isLoggedIn } from "./auth";
+import SchedulePayment from "../pages/SchedulePayment.vue";
 
-const routes = [
+const routes: RouteRecordRaw[] = [
   { path: "/", name: "home", component: Home, meta: { requiresAuth: true } },
   {
     path: "/payments",
     name: "payments",
     component: Payments,
+    meta: { requiresAuth: true },
+  },
+
+  {
+    path: "/payments/schedule",
+    name: "schedule-payment",
+    component: SchedulePayment,
     meta: { requiresAuth: true },
   },
   {

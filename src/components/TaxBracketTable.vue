@@ -4,6 +4,8 @@ import { formatCurrency } from "../lib/formatter";
 import type TaxBracket from "../lib/types/TaxBracket";
 
 
+// TODO: Buscar informações de taxas do Backend
+
 // Example data
 const brackets = ref<TaxBracket[]>([
   { min_days: 0, max_days: 0, fixed_rate: 300, percentage_rate: 2.5 },
