@@ -4,6 +4,7 @@ import { useRouter } from "vue-router";
 import type User from "../lib/types/User";
 import { registerUser } from "../lib/auth";
 import MoneyInput from "../components/MoneyInput.vue";
+import Button from "../components/Button.vue";
 
 const router = useRouter();
 
@@ -27,13 +28,16 @@ async function handleRegister() {
 </script>
 
 <template>
-  <h2>Cadastre-se!</h2>
-  <section class="flex flex-col h-full items-center justify-center">
-    <form @submit.prevent="handleRegister" class="flex flex-col gap-2 max-w-sm">
-      <input v-model="name" type="text" placeholder="Nome" required
-        class="border-2 border-indigo-700 p-2 rounded-2xl" />
-      <MoneyInput v-model="initialBalance" />
-      <button type="submit" class="bg-indigo-500 text-white p-2 rounded cursor-pointer">Cadastrar</button>
+  <section class="flex flex-col h-full items-center justify-center gap-5">
+    <h2 class="text-3xl font-bold text-indigo-900 text-center">Cadastre-se!</h2>
+    <form @submit.prevent="handleRegister" class="flex flex-col gap-2 max-w-sm bg-indigo-900 rounded-lg p-4">
+      <label class="w-full text-center text-white font-bold">Nome:</label>
+      <input v-model="name" type="text" placeholder="Nome" required class="border-2 p-3 text-white rounded-xl" />
+      <div class="h-4"></div>
+      <label class="text-center text-white font-bold">Saldo Inicial:</label>
+      <MoneyInput v-model="initialBalance" :class="'text-white'" />
+      <div class="h-4"></div>
+      <button type="submit" class="bg-amber-500 text-white p-2 rounded cursor-pointer">Cadastrar</button>
       <p v-if="error" class="text-red-500 ">{{ error }}</p>
     </form>
 

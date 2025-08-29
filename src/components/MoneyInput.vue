@@ -41,6 +41,6 @@ function formatDisplay(value: number) {
 </script>
 
 <template>
-  <input type="text" class="border rounded px-3 py-2 w-full text-right" :value="formatDisplay(internalValue)"
+  <input type="text" class="border rounded-lg px-3 py-2 w-full text-right" :value="formatDisplay(internalValue)"
     @input="onInput" />
 </template>
