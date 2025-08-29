@@ -8,6 +8,8 @@ import Payments from "../pages/Payments.vue";
 import Register from "../pages/Register.vue";
 import { getCurrentUser, isLoggedIn } from "./auth";
 import SchedulePayment from "../pages/SchedulePayment.vue";
+import SchedulePaymentToUser from "../pages/SchedulePaymentToUser.vue";
+import ScheduledPayment from "../pages/ScheduledPayment.vue";
 
 const routes: RouteRecordRaw[] = [
   { path: "/", name: "home", component: Home, meta: { requiresAuth: true } },
@@ -27,7 +29,14 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/payments/schedule/:accountNumber",
     name: "schedule-payment-to-account",
-    component: SchedulePayment,
+    component: SchedulePaymentToUser,
+    meta: { requiresAuth: true },
+    props: true,
+  },
+  {
+    path: "/payments/:id",
+    name: "scheduled-payment",
+    component: ScheduledPayment,
     meta: { requiresAuth: true },
     props: true,
   },
@@ -45,7 +54,9 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-  getCurrentUser();
+  if (to.meta.requiresAuth && isLoggedIn()) {
+    getCurrentUser();
+  }
 
   if (to.meta.requiresAuth && !isLoggedIn()) {
     next({ name: "register" });

@@ -12,3 +12,14 @@ export async function getContacts(): Promise<Omit<User, "balance">[]> {
   contactState.contacts = data;
   return data;
 }
+
+export function getContact(accountNumber: string): Omit<User, "balance"> {
+  const match = contactState.contacts?.find(
+    (ctt) => ctt.accountNumber === accountNumber
+  );
+  if (!match) {
+    throw new Error("Unable to find contact.");
+  }
+
+  return match;
+}

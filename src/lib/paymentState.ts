@@ -2,7 +2,7 @@ import { reactive, watch } from "vue";
 import type { ScheduledPayment } from "./types/ScheduledPayment";
 
 export const paymentState = reactive<{ payments: ScheduledPayment[] | null }>({
-  payments: JSON.parse(localStorage.getItem("payments") || "null"),
+  payments: JSON.parse(localStorage.getItem("payments") || "[]"),
 });
 
 watch(

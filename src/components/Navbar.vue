@@ -17,7 +17,7 @@ import { formatCurrency } from '../lib/formatter';
       <RouterLink to="/payments/schedule" class="hover:text-amber-300 transition-colors">agendar pagamento</RouterLink>
       <RouterLink to="/payments" class="hover:text-amber-300 transition-colors">pagamentos</RouterLink>
       <div class="flex-1"></div>
-      <p>{{ authState.user.nome }} · Conta: {{ authState.user.accountNumber }} · <span class="text-green-500">{{
+      <p>{{ authState.user.nome }} · {{ authState.user.accountNumber }} · <span class="text-green-500">{{
         formatCurrency(authState.user.balance) }}</span>
       </p>
     </template>

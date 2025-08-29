@@ -11,7 +11,7 @@ const { contact } = defineProps<Props>();
 
 <template>
   <div
-    class="p-5 flex flex-1 cursor-pointer items-center justify-between gap-2 rounded-2xl shadow border-indigo-900 border-2 font-bold hover:bg-indigo-900 hover:text-white transition-colors">
+    class="p-5 flex flex-1 cursor-pointer items-center justify-between gap-2 rounded-xl shadow border-indigo-900 border-2 font-bold hover:bg-indigo-900 hover:text-white transition-colors">
     <div class="">
       <p class="text-2xl">{{ contact.nome }}</p>
       <p class="text-gray-400">{{ contact.accountNumber }}</p>

@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import type User from "../lib/types/User";
 import { registerUser } from "../lib/auth";
+import MoneyInput from "../components/MoneyInput.vue";
 
 const router = useRouter();
 
@@ -14,7 +15,7 @@ async function handleRegister() {
   try {
     const user: User = await registerUser({
       nome: name.value,
-      initialBalance: initialBalance.value * 100
+      initialBalance: initialBalance.value
     });
 
     localStorage.setItem("user", JSON.stringify(user));
@@ -31,8 +32,7 @@ async function handleRegister() {
     <form @submit.prevent="handleRegister" class="flex flex-col gap-2 max-w-sm">
       <input v-model="name" type="text" placeholder="Nome" required
         class="border-2 border-indigo-700 p-2 rounded-2xl" />
-      <input v-model="initialBalance" type="number" placeholder="Saldo Inicial" required
-        class="border-2 border-indigo-700 p-2 rounded-2xl" />
+      <MoneyInput v-model="initialBalance" />
       <button type="submit" class="bg-indigo-500 text-white p-2 rounded cursor-pointer">Cadastrar</button>
       <p v-if="error" class="text-red-500 ">{{ error }}</p>
     </form>

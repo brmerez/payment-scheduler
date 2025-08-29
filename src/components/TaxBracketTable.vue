@@ -1,20 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { formatCurrency } from "../lib/formatter";
 import type TaxBracket from "../lib/types/TaxBracket";
 
+const brackets = ref<TaxBracket[]>([]);
 
-// TODO: Buscar informações de taxas do Backend
+async function fetchBrackets() {
+  try {
+    const res = await fetch("http://localhost:8080/api/v1/tax-brackets");
+    if (!res.ok) throw new Error("Failed to fetch tax brackets");
+    const data: TaxBracket[] = await res.json();
+    brackets.value = data;
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-// Example data
-const brackets = ref<TaxBracket[]>([
-  { min_days: 0, max_days: 0, fixed_rate: 300, percentage_rate: 2.5 },
-  { min_days: 1, max_days: 10, fixed_rate: 1200, percentage_rate: 0.0 },
-  { min_days: 11, max_days: 20, fixed_rate: 0, percentage_rate: 8.2 },
-  { min_days: 21, max_days: 30, fixed_rate: 0, percentage_rate: 6.9 },
-  { min_days: 31, max_days: 40, fixed_rate: 0, percentage_rate: 4.7 },
-  { min_days: 41, max_days: 50, fixed_rate: 0, percentage_rate: 1.7 },
-]);
+onMounted(() => {
+  fetchBrackets();
+});
 </script>
 
 <template>
@@ -37,12 +41,12 @@ const brackets = ref<TaxBracket[]>([
           <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Até</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-gray-200 bg-white">
+      <tbody v-if="brackets" class="divide-y divide-gray-200 bg-white">
         <tr v-for="(bracket, index) in brackets" :key="index" class="hover:bg-gray-50">
-          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.min_days }}</td>
-          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.max_days }}</td>
-          <td class="px-4 py-2 text-sm text-gray-700">{{ formatCurrency(bracket.fixed_rate) }}</td>
-          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.percentage_rate }}%</td>
+          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.minDays }}</td>
+          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.maxDays }}</td>
+          <td class="px-4 py-2 text-sm text-gray-700">{{ formatCurrency(bracket.fixedRate) }}</td>
+          <td class="px-4 py-2 text-sm text-gray-700">{{ bracket.percentageRate }}%</td>
         </tr>
       </tbody>
     </table>
