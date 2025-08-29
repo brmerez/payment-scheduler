@@ -3,10 +3,24 @@ import "./style.css";
 import App from "./App.vue";
 import router from "./lib/router";
 
-import { MdPaymentsSharp, MdAccountcircle } from "oh-vue-icons/icons";
+import {
+  MdPaymentsSharp,
+  MdAccountcircle,
+  BiInfoCircle,
+  MdInfooutline,
+  RiErrorWarningLine,
+  CoTransfer,
+} from "oh-vue-icons/icons";
 import { addIcons, OhVueIcon } from "oh-vue-icons";
 
-addIcons(MdPaymentsSharp, MdAccountcircle);
+addIcons(
+  MdPaymentsSharp,
+  MdAccountcircle,
+  BiInfoCircle,
+  MdInfooutline,
+  RiErrorWarningLine,
+  CoTransfer
+);
 
 const app = createApp(App);
 
