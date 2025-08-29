@@ -6,7 +6,7 @@
 1. Garanta que você tenha instalado o Java 11 na sua máquina, ou mais especificamente `openjdk 11.0.22 2024-01-16`
 2. Garanta que você tem instalado o NodeJs e o NPM
 3. Clone este repositório para uma pasta, que deve então conter duas pastas dentro dele: `frontend` e `backend`
-4. Entre na pasta `frontend` e rode o comando `npm run build` (Isso vai gerar a build do frontend e colocar na pasta `/resources/static/` do backend, de qual será servida a aplicação.
+4. Entre na pasta `frontend` e rode o comando `npm install` seguido do comando `npm run build` (Isso vai gerar a build do frontend e colocar na pasta `/resources/static/` do backend, de qual será servida a aplicação.
 5. Feito isso, entre na pasta `backend` e gere a build pelo utilitário `mvnw` (ou `mvn` se tiver Maven instalado na sua máquina) rodando o comando `mvnw clean package`
 6. Isso irá criar um arquivo `paymentschedule-0.0.1-SNAPSHOT.jar` na pasta `target` do `backend`, e a partir disso você pode rodar o comando `java -jar paymentschedule-0.0.1-SNAPSHOT.jar` para rodar a aplicação na porta `8080`
 7. Acesse em seu navegador a url `http://localhost:8080` e a aplicação deve estar disponível para interação.
@@ -54,6 +54,8 @@
 	Acabei não implementando o pagamento em si (no débito da conta no horário marcado) por falta de tempo hábil, mas facilmente poderia ser feito adicionando uma task regular pra rodar de 1 em 1 hora, ou 10 em 10 minutos, no serviço de PaymentScheduler. Isso iria necessitar alterar como se criam os agendamentos para apenas permitir no máximo intervalos de 10 minutos, não tem como uma task ficar rodando de 1 em 1 minuto pra saber se algum agendamento foi feito naquele minuto específico, mas sim fazer isso a cada 1h ou 10min.
 
 Em retrospecto, um problema de ordem de negócio seria que a taxa e o valor só é debitado na hora da transferência (teoricamente, pois isso não está implementado), e fico pensando se a taxa não deveria ser cobrada no ato da transferência. Isso já é do domínio de negócio e há um argumento válido para ambas.
+
+Acabei não escrevendo testes pela demanda de tempo mesmo (estive trabalhando nos 3 dias que me disponibilizaram pra fazer o teste), mas acredito que a forma como está arquitetado o backend deve ser facilmente testável.
 
 De modo geral, fiquei feliz com o resultado.
 
