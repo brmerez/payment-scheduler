@@ -4,7 +4,6 @@ import { useRouter } from "vue-router";
 import type User from "../lib/types/User";
 import { registerUser } from "../lib/auth";
 import MoneyInput from "../components/MoneyInput.vue";
-import Button from "../components/Button.vue";
 
 const router = useRouter();
 
