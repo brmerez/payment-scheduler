@@ -6,7 +6,8 @@ import { authState } from '../lib/authState';
 
 
 <template>
-  <nav class="w-full bg-indigo-900 text-white font-bold px-[15vw] min-h-[60px] flex items-center gap-4 shadow sticky">
+  <nav
+    class="w-full bg-indigo-900 text-white font-bold px-[5vw] md:px-[10vw] lg:px-[15vw] xl:px-[20vw] min-h-[60px] flex items-center gap-4 shadow sticky">
     <RouterLink to="/" class="flex items-center gap-2 border-r-2 border-white pr-4">
       <v-icon name="md-payments-sharp" scale="2" class="text-amber-300" />
       <h4 class="text-2xl">pay.co</h4>
