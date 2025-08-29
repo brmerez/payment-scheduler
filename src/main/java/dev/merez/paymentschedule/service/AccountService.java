@@ -7,6 +7,7 @@ import dev.merez.paymentschedule.persistance.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
@@ -19,6 +20,11 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    // TODO: Adicionar paginacão
+    public List<Account> getAccounts() {
+        List<Account> accounts = accountRepository.findAll();
+        return accounts;
+    }
     public AccountDTO getAccount(String accountNumber) {
         Optional<Account> _account = accountRepository.findAccountByAccountNumber(accountNumber);
         Account account = _account.orElseThrow(() -> new NoSuchElementException("Conta não existe."));
@@ -34,7 +40,7 @@ public class AccountService {
     private String generateAccountNumber() {
         String candidate;
         do {
-            candidate = UUID.randomUUID().toString().toUpperCase().substring(0, 10);
+            candidate = UUID.randomUUID().toString().toUpperCase().replaceAll("-", "").substring(0, 10);
         } while(accountRepository.existsAccountsByAccountNumber(candidate));
 
         return candidate;

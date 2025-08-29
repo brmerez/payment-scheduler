@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -23,6 +25,15 @@ public class PaymentSchedulerService {
 
     @Autowired
     TaxService taxService;
+
+    public List<ScheduledPayment> getScheduledPaymentsForSender(String senderAcc){
+
+        if(!accountRepository.existsAccountsByAccountNumber(senderAcc)){
+            throw new NoSuchElementException("Não foi possível achar a conta com código '" + senderAcc + "'");
+        }
+
+        return scheduledPaymentRepository.findByPaymentSenderAccountNumber(senderAcc);
+    }
 
     public ScheduledPayment schedulePayment(String senderAcc, String receiverAcc, LocalDateTime scheduledTo, Long amount) {
 
@@ -47,5 +58,16 @@ public class PaymentSchedulerService {
     public ScheduledPayment performPayment() {
         // TODO: Implementar pagamento?
         return null;
+    }
+
+    public Optional<ScheduledPayment> getPaymentById(Long id) {
+        return scheduledPaymentRepository.findById(id);
+    }
+
+    public List<ScheduledPayment> getScheduledPaymentsForAccount(String accountNumber) {
+        if (!accountRepository.existsAccountsByAccountNumber(accountNumber)) {
+            throw new NoSuchElementException("Conta com número '" + accountNumber + "' não encontrada");
+        }
+        return scheduledPaymentRepository.findBySenderOrRecipientAccountNumber(accountNumber);
     }
 }

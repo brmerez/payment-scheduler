@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ScheduledPaymentResultDTO {
+    private Long id;
     private AccountDTO senderAccount;
     private AccountDTO recipientAccount;
     private Long amount;
@@ -16,6 +17,7 @@ public class ScheduledPaymentResultDTO {
     private Long totalAmount;
     private LocalDateTime scheduledAt;
     private LocalDateTime scheduledTo;
+    private boolean fulfilled;
 
     public static ScheduledPaymentResultDTO from(ScheduledPayment schPayment){
         ScheduledPaymentResultDTO dto = new ScheduledPaymentResultDTO();
@@ -24,6 +26,7 @@ public class ScheduledPaymentResultDTO {
         AccountDTO sender = AccountDTO.from(payment.getSender());
         AccountDTO receiver = AccountDTO.from(payment.getRecipient());
 
+        dto.setId(payment.getId());
         dto.setSenderAccount(sender);
         dto.setRecipientAccount(receiver);
         dto.setScheduledAt(schPayment.getScheduledAt());
@@ -31,6 +34,7 @@ public class ScheduledPaymentResultDTO {
         dto.setAmount(payment.getAmount());
         dto.setTaxes(payment.getTax());
         dto.setTotalAmount(payment.getTotal());
+        dto.setFulfilled(schPayment.getFulfilled());
 
         return dto;
     }

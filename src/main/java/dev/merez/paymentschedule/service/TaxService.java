@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,8 @@ public class TaxService {
         Optional<TaxBracket> taxBracket = taxBracketRepository.findByDays(interval);
 
         if(taxBracket.isEmpty()){
-            throw new IllegalArgumentException("Não é possível agendar um pagamento para mais de " + interval + " dias.");
+            Long maxDays = taxBracketRepository.findLargestMaxDays();
+            throw new IllegalArgumentException("Não é possível agendar um pagamento para mais de " + maxDays + " dias.");
         }
 
         return taxBracket.get();
@@ -33,5 +35,7 @@ public class TaxService {
         result += taxBracket.getFixedRate();
         return Math.round(result);
     }
-
+    public List<TaxBracket> getCurrentTaxBrackets() {
+        return taxBracketRepository.findAllOrdered();
+    }
 }

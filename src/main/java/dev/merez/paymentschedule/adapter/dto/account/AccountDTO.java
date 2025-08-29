@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class AccountDTO {
-    private String account;
-    private String name;
+    private String accountNumber;
+    private String nome;
 
     public static AccountDTO from(Account account) {
         AccountDTO dto = new AccountDTO();
-        dto.setAccount(account.getAccountNumber());
-        dto.setName(account.getNome());
+        dto.setAccountNumber(account.getAccountNumber());
+        dto.setNome(account.getNome());
         return dto;
 
     }
